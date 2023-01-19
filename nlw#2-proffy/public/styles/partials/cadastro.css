@@ -1,0 +1,46 @@
+body.cadastro-sucesso {
+    background-color:  var(--color-primary);
+    background-image: url(/images/success-background.svg);
+}
+
+.container h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 8rem;
+    line-height: 4.6rem;
+    margin: 40px auto 42px; 
+    color: var(--color-title-in-primary);
+}
+
+.container p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 185px;
+    color: var(--color-text-in-primary);
+}
+.top-bar-container img {
+    max-width: 1100px;
+}
+
+.buttons-container a {
+    width: 30rem;
+    height: 10.4rem;
+    background-color: var(--color-secondary);
+    border-radius: 0.8rem;
+    
+    font: 700 2.4rem Archivo;
+
+    padding: 40px 15px 10px;
+
+    text-decoration: none;
+
+    color: var(--color-button-text);
+
+    transition: background 0.2s;
+}
+
+.buttons-container a:hover {
+    background-color: var(--color-secondary-dark);
+}
