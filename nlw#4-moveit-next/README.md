@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="/public/banner.png" width="700px;" />
+  <img src="src/assets/banner.png" alt="NextLevelWeek" title="#NextLevelWeek"  width="700px;" />
 </h1>
 
 ## Moveit
@@ -9,7 +9,7 @@
 É uma aplicação para gerenciar o tempo que você utiliza para exercer tarefas, podendo ser na área dos estudos ou do trabalho.  E cada ciclo completado a pessoa ganha XP subindo de nível dentro do app. 
 
 <h1 align="center">
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="/public/Dark-Theme-Moveit.png" width="600px;"/>
+  <img src="src/assets/dark-moveit.png" alt="Moveit" title="#Moveit"  width="700px;"/>
 </h1>
 
 ## [:heavy_check_mark:] Status do Projeto
@@ -27,7 +27,7 @@ Teste aqui: [Moveit](https://moveit-red.vercel.app)
 
 --- 
 
-Toda a base dessa aplicação foi desenvolvida durante a semana NLW4 da [Rocketseat](https://rocketseat.com.br) com @diego fernandes. 
+Toda a base dessa aplicação foi desenvolvida durante a semana NLW4 da [Rocketseat](https://rocketseat.com.br) 
 -  ⚛️ [ReactJs](https://reactjs.org/)
 -  ⚛️ [NextJs](https://nextjs.org/)
 -  ⚛️ [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
