@@ -57,7 +57,7 @@ module.exports = {
       },
 
       backgroundSize: {
-        stripes: '100% 8px'
+        stripes: "100% 8px",
       },
 
       blur: {
@@ -65,5 +65,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
