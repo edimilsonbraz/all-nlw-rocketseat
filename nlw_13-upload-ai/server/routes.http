@@ -22,3 +22,14 @@ Content-Type: application/json
 {
   "prompt": "Tailwind, hora de codar, npm"
 }
+
+###
+# @name generate-ai-completion
+POST http://localhost:3333/ai/complete
+Content-Type: application/json 
+
+{
+  "videoId": "6ab03a1a-29fa-46cf-a503-075d8069e16d",
+  "temperature": 0.5,
+  "template": "Gere um resumo sucinto da transcrição do video informado a seguir: '''{transcription}'''"
+}
