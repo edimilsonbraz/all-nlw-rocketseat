@@ -32,17 +32,20 @@ export function AttendeeList() {
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
   const [attendees, setAttendees] = useState<Attendee[]>([])
+  const [total, setTotal] = useState(0)
 
-  const totalPages = Math.ceil(attendees.length / 10)
+  const totalPages = Math.ceil(total / 10)
 
   useEffect(() => {
     fetch(
-      'http://localhost:3333/events/9e9bd979-9d10-4915-b339-3786b1634f33/attendees'
+      `http://localhost:3333/events/9e9bd979-9d10-4915-b339-3786b1634f33/attendees?pageIndex=${
+        page - 1
+      }`
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         setAttendees(data.attendees)
+        setTotal(data.total)
       })
   }, [page])
 
@@ -119,8 +122,7 @@ export function AttendeeList() {
                 </TableCell>
                 <TableCell>{dayjs().to(attendee.createdAt)}</TableCell>
                 <TableCell>
-                  {attendee.checkedInAt === null 
-                  ? (
+                  {attendee.checkedInAt === null ? (
                     <span className="text-zinc-400">Não fez check-in</span>
                   ) : (
                     dayjs().to(attendee.checkedInAt)
@@ -138,7 +140,7 @@ export function AttendeeList() {
         <tfoot>
           <tr>
             <TableCell colSpan={3}>
-              Mostrando 10 de {attendees.length} itens
+              Mostrando {attendees.length} de {total} itens
             </TableCell>
             <TableCell className="text-right" colSpan={3}>
               <div className="inline-flex items-center gap-8">
