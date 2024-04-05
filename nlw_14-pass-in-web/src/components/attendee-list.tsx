@@ -29,7 +29,17 @@ interface Attendee {
 }
 
 export function AttendeeList() {
-  const [search, setSearch] = useState('')
+
+  const [search, setSearch] = useState(() => {
+    const url = new URL(window.location.toString())
+
+    if(url.searchParams.has('search')) {
+      return url.searchParams.get('search') ?? ''
+    }
+
+    return ''
+  })
+
   const [page, setPage] = useState(() => {
     const url = new URL(window.location.toString())
 
@@ -39,7 +49,7 @@ export function AttendeeList() {
 
     return 1
   })
-  
+
   const [attendees, setAttendees] = useState<Attendee[]>([])
   const [total, setTotal] = useState(0)
 
@@ -74,8 +84,18 @@ export function AttendeeList() {
     setPage(page)
   }
 
+  function setCurrentSearch(search: string) {
+    const url = new URL(window.location.toString())
+
+    url.searchParams.set('search', search)
+
+    window.history.pushState({}, '', url)
+
+    setSearch(search)
+  }
+
   function onSearchInputChanged(event: ChangeEvent<HTMLInputElement>) {
-    setSearch(event.target.value)
+    setCurrentSearch(event.target.value)
     setCurrentPage(1)
   }
 
@@ -106,6 +126,7 @@ export function AttendeeList() {
             placeholder="Buscar participante..."
             type="text"
             onChange={onSearchInputChanged}
+            value={search}
           />
         </div>
       </div>
