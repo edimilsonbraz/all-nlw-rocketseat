@@ -1,15 +1,11 @@
 import { FastifyInstance } from "fastify"
 import { ZodTypeProvider } from "fastify-type-provider-zod"
 import nodemailer from "nodemailer"
-import dayjs from "dayjs"
-import 'dayjs/locale/pt-br'
-import localizedFormat from "dayjs/plugin/localizedFormat"
 import { z } from "zod"
 import { prisma } from "../lib/prisma"
 import { getMailClient } from "../lib/mail"
+import { dayjs } from "../lib/dayjs"
 
-dayjs.locale('pt-br')
-dayjs.extend(localizedFormat)
 
 export async function createTrip(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -74,32 +70,7 @@ export async function createTrip(app: FastifyInstance) {
 
       const mail = await getMailClient()
 
-      const message = await mail.sendMail({
-        from: {
-          name: "Equipe plann.er",
-          address: "oi@plann.er"
-        },
-        to: {
-          name: owner_name,
-          address: owner_email
-        },
-        subject: `Confirme sua viagem para ${destination} em ${formattedStartDate}`,
-        html: `
-        <div style="font-family: sans-serif; font-size: 16px; line-height: 1.6;">
-          <p>Você solicitou a criação de uma viagem para <strong>${destination}</strong> nas datas de <strong>${formattedStartDate}</strong> até <strong>${formattedEndDate}</strong>.</p>
-          <p></p>
-          <p>Para confirmar sua viagem, clique no link abaixo:</p>
-          <p></p>
-          <p>
-            <a href="${confirmationLink}">Confirmar viagem</a>
-          </p>
-          <p></p>
-          <p>Caso você não saiba do que se trata esse e-mail, apenas ignore esse e-mail.</p>
-        </div>
-        `.trim()
-      })
-
-      console.log(nodemailer.getTestMessageUrl(message))
+      
 
       return { tripId: trip.id }
     }
