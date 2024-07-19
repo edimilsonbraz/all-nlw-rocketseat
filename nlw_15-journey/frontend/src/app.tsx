@@ -34,7 +34,7 @@ export function App() {
     setIsGuestsModalOpen(false)
   }
 
-  function addNewEmailtoInvite(event: FormEvent<HTMLFormElement>) {
+  function addNewEmailToInvite(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     
     const data = new FormData(event.currentTarget)
@@ -54,6 +54,12 @@ export function App() {
     ])
 
     event.currentTarget.reset()
+  }
+
+  function removeEmailFromInvites(emailToRemove: string) {
+    const newEmailList = emailsToInvite.filter(email => email !== emailToRemove)
+    
+    setEmailsToInvite(newEmailList)
   }
 
   return (
@@ -173,7 +179,7 @@ export function App() {
                   >
                     <span className="text-zinc-300">{email}</span>
                     <button type="button">
-                      <X className="size-4 text-zinc-400" />
+                      <X className="size-4 text-zinc-400" onClick={() => removeEmailFromInvites(email)}/>
                     </button>
                   </div>
                 )
@@ -182,7 +188,7 @@ export function App() {
 
             <div className="w-full h-px bg-zinc-800" />
 
-            <form onSubmit={addNewEmailtoInvite} className="flex items-center gap-2 p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg">
+            <form onSubmit={addNewEmailToInvite} className="flex items-center gap-2 p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg">
               <div className="px-2 flex items-center flex-1 gap-2">
                 <AtSign className="text-zinc-400 size-5" />
                 <input
