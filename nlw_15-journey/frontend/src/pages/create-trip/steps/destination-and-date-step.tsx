@@ -2,7 +2,9 @@ import { ArrowRight, Calendar, MapPin, Settings2, X } from "lucide-react"
 import { Button } from "../../../components/button"
 import { useState } from "react"
 import { DateRange, DayPicker } from "react-day-picker"
-import "react-day-picker/style.css";
+import "react-day-picker/style.css"
+import { format } from "date-fns"
+import { pt } from "date-fns/locale";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean
@@ -15,7 +17,9 @@ export function DestinationAndDateStep({
   openGuestsInput
 }: DestinationAndDateStepProps) {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
-  const [eventStartAndEndDates, setEventStartAndEndDates] = useState<DateRange | undefined>()
+  const [eventStartAndEndDates, setEventStartAndEndDates] = useState<
+    DateRange | undefined
+  >()
 
   function openDatePicker() {
     return setIsDatePickerOpen(true)
@@ -24,6 +28,15 @@ export function DestinationAndDateStep({
   function closeDatePicker() {
     return setIsDatePickerOpen(false)
   }
+
+  const displayedDate =
+    eventStartAndEndDates &&
+    eventStartAndEndDates.from &&
+    eventStartAndEndDates.to
+      ? format(eventStartAndEndDates.from, "d' de 'LLL")
+          .concat(' até ')
+          .concat(format(eventStartAndEndDates.to, "d' de 'LLL"))
+      : null
 
   return (
     <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
@@ -40,10 +53,12 @@ export function DestinationAndDateStep({
       <button
         onClick={openDatePicker}
         disabled={isGuestsInputOpen}
-        className="flex items-center gap-2 text-left"
+        className="flex items-center gap-2 text-left w-[240px]"
       >
         <Calendar className="size-5 text-zinc-400" />
-        <span className="text-lg text-zinc-400 w-40">Quando?</span>
+        <span className="flex-1 text-lg text-zinc-400 w-40">
+          {displayedDate || "Quando"}
+        </span>
       </button>
 
       {/* MODAL */}
@@ -59,7 +74,12 @@ export function DestinationAndDateStep({
               </div>
             </div>
 
-            <DayPicker mode="range" selected={eventStartAndEndDates} onSelect={setEventStartAndEndDates}/>
+            <DayPicker
+              locale={ pt }
+              mode="range"
+              selected={eventStartAndEndDates}
+              onSelect={setEventStartAndEndDates}
+            />
           </div>
         </div>
       )}

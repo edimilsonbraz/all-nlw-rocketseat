@@ -9,3 +9,11 @@
 input {
   color-scheme: dark;
 }
+
+.rdp-root {
+  --rdp-accent-color: #71b300; 
+  --rdp-accent-background-color: #1A2E05;
+}
+[data-theme="dark"] .rdp-root {
+  --rdp-accent-color: yellow; /* Use yellow as the accent color in dark mode. */
+}
