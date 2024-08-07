@@ -108,7 +108,6 @@ export function CreateTripPage() {
     const { tripId } = response.data
 
     navigate(`/trips/${tripId}`)
-
   }
 
   return (
