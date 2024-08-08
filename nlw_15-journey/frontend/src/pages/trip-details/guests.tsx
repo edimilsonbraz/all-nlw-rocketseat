@@ -23,7 +23,7 @@ export function Guests() {
 
   return (
     <div className="space-y-6">
-      <h2 className="font-semibold text-xl">Convidados</h2>
+      <h2 className="font-semibold text-xl text-lime-400">Convidados</h2>
       <div className="space-y-5">
         {participants?.map((participant, index) => {
           return (
