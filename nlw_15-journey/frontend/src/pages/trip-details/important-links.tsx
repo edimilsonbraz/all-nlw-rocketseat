@@ -3,6 +3,7 @@ import { Button } from "../../components/button"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { api } from "../../lib/axios"
+import { CreateLinkModal } from "./create-links-modal"
 
 interface LinksProps {
   title: string
@@ -12,12 +13,21 @@ interface LinksProps {
 export function ImportantLinks() {
   const { tripId } = useParams()
   const [links, setLinks] = useState<LinksProps[]>([])
+  const [isLinksModalOpen, setLinksModalOpen] = useState(false)
 
   useEffect(() => {
     api
       .get(`/trips/${tripId}/links`)
       .then((response) => setLinks(response.data.links))
   }, [tripId])
+
+  function openLinkModal() {
+    setLinksModalOpen(true)
+  }
+
+  function closeLinkModal() {
+    setLinksModalOpen(false)
+  }
 
   return (
     <div className="space-y-6">
@@ -27,7 +37,10 @@ export function ImportantLinks() {
           <div>
             {links.map((link) => {
               return (
-                <div className="flex items-center justify-between gap-4">
+                <div
+                  key={link.url}
+                  className="flex items-center justify-between gap-4"
+                >
                   <div className="space-y-1.5">
                     <span className="block font-medium text-zinc-100">
                       {link.title}
@@ -50,10 +63,13 @@ export function ImportantLinks() {
           </p>
         )}
       </div>
-      <Button variant="secondary" size="full">
+      <Button onClick={openLinkModal} variant="secondary" size="full">
         <Plus className="size-5" />
         Cadastrar novo link
       </Button>
+
+      {/* MODAL LINKS */}
+      {isLinksModalOpen && <CreateLinkModal closeLinkModal={closeLinkModal} />}
     </div>
   )
 }

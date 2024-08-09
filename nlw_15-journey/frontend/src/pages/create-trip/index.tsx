@@ -88,7 +88,7 @@ export function CreateTripPage() {
       return
     }
 
-    if(emailsToInvite.length === 0) {
+    if (emailsToInvite.length === 0) {
       return
     }
 
@@ -96,7 +96,7 @@ export function CreateTripPage() {
       return
     }
 
-    const response = await api.post('/trips', {
+    const response = await api.post("/trips", {
       destination,
       starts_at: eventStartAndEndDates?.from,
       ends_at: eventStartAndEndDates?.to,
