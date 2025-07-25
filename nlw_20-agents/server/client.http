@@ -37,9 +37,9 @@ GET {{baseUrl}}/rooms/{{roomId}}/questions
 
 # Create question
 # @name createQuestion
-POST {{baseUrl}}/rooms/{{roomId}}/questions
+POST {{baseUrl}}/rooms/22e840a1-743e-4f32-8ed7-0478af6bcf7c/questions
 Content-Type: application/json
 
 {
-  "question": "Qual é a função do Docker dentro de DevOps"
+  "question": "O que é Vue.js e a sua diferença em relação ao Angular?"
 }
